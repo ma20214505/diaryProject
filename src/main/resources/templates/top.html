@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{fragments/layout :: layout(~{::title}, ~{::body})}">
+<head>
+    <title>トップページ | 日記システム</title>
+    <link rel="stylesheet" href="button.css">
+</head>
+<body>
+<h1 class="mt-3">トップページ</h1>
+<div class="mt-3">
+    <a href="/showDiary" th:href="@{/diary/showDiary}" class="btn btn-outline-success">日記一覧</a>
+</div>
+<div class="mt-3">
+    <a href="/showDiary" th:href="@{/diary/createDiary}" class="btn btn-outline-warning">日記作成</a>
+</div>
+<div class="mt-3">
+    <a href="/userList" th:href="@{/user/userList}" class="btn btn-outline-primary">ユーザー一覧</a>
+    <a href="/login" th:href="@{/login}" class="btn btn-outline-secondary">戻る</a>
+</div>
+</body>
+</html>
+
+
+

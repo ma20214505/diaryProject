@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{fragments/layout :: layout(~{::title}, ~{::body})}">
+<head>
+    <title>ユーザー一覧</title>
+    <link rel="stylesheet" href="button.css">
+</head>
+<body>
+<div>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>ユーザー名</th>
+            <th>権限</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="user : ${userList}">
+            <th th:text="${user.name}">(name)</th>
+            <td th:text="${user.authority}">(authority)</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
