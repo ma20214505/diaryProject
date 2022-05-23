@@ -1,5 +1,6 @@
 package com.example.diaryProject.web.user;
 
+import com.example.diaryProject.web.validation.UniqueUsername;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.hibernate.validator.constraints.UniqueElements;
@@ -15,11 +16,11 @@ import javax.validation.constraints.Size;
 public class UserForm {
 
     @NotBlank
-    //@UniqueUserName
+    @UniqueUsername
     private String name;
 
     @NotBlank
-    @Size(min = 12,max = 128)
+    @Size(min = 10,max = 128)
     private String pw;
 
 //    @NotBlank
