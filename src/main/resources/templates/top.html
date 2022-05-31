@@ -13,9 +13,11 @@
 <div class="mt-3">
     <a href="/showDiary" th:href="@{/diary/createDiary}" class="btn btn-outline-warning">日記作成</a>
 </div>
+<div class="mt-3">
+    <a href="./user/userControl.html" th:href="@{/user/control}" class="btn btn-outline-info">ユーザー管理</a>
+</div>
 <form action="#" th:action="@{/logout}" method="post">
     <div class="mt-3">
-        <a href="/userList" th:href="@{/user/userList}" class="btn btn-outline-primary">ユーザー一覧</a>
         <button type="submit" class="btn btn-outline-secondary">ログアウト</button>
     </div>
 </form>

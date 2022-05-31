@@ -10,6 +10,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.Authentication;
+
+import org.springframework.security.core.userdetails.User;
 
 @Controller
 @RequestMapping("/user")
@@ -17,25 +21,31 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class UserController {
     private final UserService userService;
 
-    //ユーザー一覧
+    //ユーザー管理画面遷移
+    @GetMapping("/control")
+    public String showUserControl(){
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String name = auth.getName();
+        return "/user/userControl";
+    }
+
+    //ユーザー一覧遷移
     @GetMapping("/showUserList")
     public String showUserList(){
         return "/user/userList";
     }
 
-    //ユーザー作成
-    @GetMapping("/createUser")
-    public String createUser(@ModelAttribute UserForm form){
-        return "/user/createUser";
-    }
+    //ユーザー削除フォーム遷移
+   @GetMapping("/userDelete")
+    public String showUserDeleteForm(@ModelAttribute UserForm form){
+       Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+       String name = auth.getName();
+       return "/user/userDeleteForm";
+   }
 
-    @PostMapping
-    public String create(@Validated UserForm form, BindingResult bindingResult){
-        if(bindingResult.hasErrors()){
-            return createUser(form);
-        }
-        userService.create(form.getName(), form.getPw(), "USER");
-        return "/top";
-    }
-
+   @PostMapping("/userDelete")
+    public String userDelete(@Validated UserForm form,BindingResult bindingResult){
+        userService.delete(form.getName(),form.getPw());
+        return "/login";
+   }
 }

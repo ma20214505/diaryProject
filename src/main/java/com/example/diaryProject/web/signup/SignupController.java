@@ -3,7 +3,6 @@ package com.example.diaryProject.web.signup;
 import com.example.diaryProject.domain.user.UserService;
 import com.example.diaryProject.web.user.UserForm;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
@@ -15,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/signup")
 @RequiredArgsConstructor
-public class signupController {
+public class SignupController {
 
     private final UserService userService;
 
