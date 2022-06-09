@@ -1,0 +1,30 @@
+.textArea {
+  width         : 75%;               /* 入力域の最大幅 */
+  background    : #ffffff;             /* 入力域の背景色 */
+  border        : 2px solid #7f7f00;   /* 入力域の枠線   */
+  border-radius : 4px;                 /* 入力域の角丸   */
+  padding       : 12px;                /* 入力文字の余白 */
+  font-size     : 20px;                /* 入力文字サイズ */
+  color         : #333333;             /* 入力文字の色   */
+  font-weight   : bold;                /* 入力文字の太字 */
+  letter-spacing: .1em;                /* 入力文字の間隔 */
+  line-height   : 22px;                /* 入力文字の間隔 */
+}
+
+.center{
+  text-align: center;
+}
+
+.input-text {
+  position: absolute;
+  top: 0;
+  left: 0;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 2px 4px;
+}
+
+.title{
+  width: 40%;
+  text-align : center ;
+}

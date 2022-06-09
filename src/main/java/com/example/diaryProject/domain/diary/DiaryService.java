@@ -21,7 +21,13 @@ public class DiaryService {
         repository.create(name,title,detail);
     }
 
+    //日記IDに基づいて取得
     public Diary showDetail(int id) {
         return repository.showDetail(id);
+    }
+
+    //日記の更新
+    public void update(int id,String title, String detail) {
+        repository.updateDiary(id,title,detail);
     }
 }

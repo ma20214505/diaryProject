@@ -5,6 +5,7 @@
     <title>日記投稿</title>
 </head>
 <body>
+
 <h1 class="mt-3">日記投稿</h1>
 <form action="#" th:action="@{/diary}" method="post" th:object="${diaryForm}">
 
@@ -17,7 +18,7 @@
 
     <div class="mt-3">
         <label for="diaryDetail" class="form-label">内容</label>
-        <input type="text" id="diaryDetail" class="form-control" th:field="*{detail}"
+        <input type="text" id="diaryDetail"  class="form-control" th:field="*{detail}"
                th:classappend="${#fields.hasErrors('detail')} ? is-invalid">
         <p class="invalid-feedback" th:if="${#fields.hasErrors('detail')}" th:errors="*{detail}">(detail)</p>
     </div>
@@ -28,5 +29,7 @@
     </div>
 
 </form>
+
+
 </body>
 </html>

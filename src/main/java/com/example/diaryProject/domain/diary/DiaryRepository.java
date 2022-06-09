@@ -3,6 +3,7 @@ package com.example.diaryProject.domain.diary;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 import org.springframework.stereotype.Service;
 
 
@@ -23,4 +24,7 @@ public interface DiaryRepository {
     //日記の取得(idに基づいて)
     @Select("select * from diary where id = #{id} order by day desc")
     Diary showDetail(int id);
+
+    @Update("update diary set title = #{title} , detail = #{detail} where id = #{id}")
+    void updateDiary(int id,String title, String detail);
 }

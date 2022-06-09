@@ -46,6 +46,8 @@ public class UserController {
    @PostMapping("/userDelete")
     public String userDelete(@Validated UserForm form,BindingResult bindingResult){
         userService.delete(form.getName(),form.getPw());
-        return "/login";
+        return "redirect:/login";
    }
+
+   //ユーザー変更
 }

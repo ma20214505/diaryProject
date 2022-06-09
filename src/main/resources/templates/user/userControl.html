@@ -10,8 +10,14 @@
 <div class="mt-3">
 <!-- TODO    ユーザー名　｜｜　パスワード変更画面へ遷移-->
 </div>
-<div class="mt-3">
+<span class="mt-3">
+    <a href="./userDeleteForm.html" th:href="@{/user/userUpdate}" class="btn btn-outline-danger">ユーザー編集</a>
+</span>
+<span class="mt-3">
     <a href="./userDeleteForm.html" th:href="@{/user/userDelete}" class="btn btn-outline-danger">ユーザー削除</a>
-</div>
+</span>
+<span class="mt-3">
+    <a href="./userDeleteForm.html" th:href="@{/}" class="btn btn-outline-danger">戻る</a>
+</span>
 </body>
 </html>
