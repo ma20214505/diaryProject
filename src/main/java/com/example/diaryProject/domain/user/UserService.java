@@ -26,4 +26,12 @@ public class UserService {
         //TODO 削除未完成
     }
 
+    public boolean search(String name, String pw) {
+        if(userRepository.search(name,passwordEncoder.encode(pw)).isEmpty()){
+            return false;
+        }else {
+            return true;
+        }
+    }
+
 }

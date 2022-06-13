@@ -20,4 +20,6 @@ public interface UserRepository {
     @Delete("delete from users where name = #{name} and password = #{password}")
     void delete(String name, String password);
 
+    @Select("select * from users where name = #{name} and password = #{password}")
+    Optional<User> search(String name, String pw);
 }

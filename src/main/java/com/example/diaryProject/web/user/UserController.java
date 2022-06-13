@@ -10,10 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.Authentication;
-
-import org.springframework.security.core.userdetails.User;
 
 @Controller
 @RequestMapping("/user")
@@ -23,31 +20,39 @@ public class UserController {
 
     //ユーザー管理画面遷移
     @GetMapping("/control")
-    public String showUserControl(){
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String name = auth.getName();
-        return "/user/userControl";
+    public String showUserControl() {
+        return "/user/Control";
     }
 
     //ユーザー一覧遷移
     @GetMapping("/showUserList")
-    public String showUserList(){
-        return "/user/userList";
+    public String showUserList() {
+        return "/user/List";
     }
 
     //ユーザー削除フォーム遷移
-   @GetMapping("/userDelete")
-    public String showUserDeleteForm(@ModelAttribute UserForm form){
-       Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-       String name = auth.getName();
-       return "/user/userDeleteForm";
-   }
+    @GetMapping("/userDelete")
+    public String showUserDeleteForm(@ModelAttribute UserForm form) {
+        return "/user/DeleteForm";
+    }
 
-   @PostMapping("/userDelete")
-    public String userDelete(@Validated UserForm form,BindingResult bindingResult){
-        userService.delete(form.getName(),form.getPw());
+    //ユーザー削除処理
+    @PostMapping("/userDelete")
+    public String userDelete(@Validated UserForm form, Authentication authentication) {
+        if (verification(authentication, form.getName(),form.getPw())) {
+            return showUserDeleteForm(form);
+        }
+        userService.delete(form.getName(), form.getPw());
         return "redirect:/login";
-   }
+    }
 
-   //ユーザー変更
+    //ユーザー変更
+
+    private boolean verification(Authentication authentication, String name,String pw) {
+        if(authentication.getName().equals(name) || userService.search(name,pw)) {
+            return false;
+        }
+        return true;
+    }
 }
+
