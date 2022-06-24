@@ -18,11 +18,11 @@ public interface DiaryRepository {
     void create(String name, String title, String detail);
 
     //日記の取得(ユーザーごと)
-    @Select("select * from diary where user_name = #{name} order by day desc")
+    @Select("select * from diary where user_name = #{name} order by posteddate desc")
     List<Diary> showDiary(String name);
 
     //日記の取得(idに基づいて)
-    @Select("select * from diary where id = #{id} order by day desc")
+    @Select("select * from diary where id = #{id} order by posteddate desc")
     Diary showDetail(int id);
 
     @Update("update diary set title = #{title} , detail = #{detail} where id = #{id}")

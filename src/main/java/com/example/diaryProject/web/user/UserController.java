@@ -32,27 +32,17 @@ public class UserController {
 
     //ユーザー削除フォーム遷移
     @GetMapping("/userDelete")
-    public String showUserDeleteForm(@ModelAttribute UserForm form) {
+    public String showUserDeleteForm(@ModelAttribute DeleteUserForm form) {
         return "/user/DeleteForm";
     }
 
     //ユーザー削除処理
     @PostMapping("/userDelete")
-    public String userDelete(@Validated UserForm form, Authentication authentication) {
-        if (verification(authentication, form.getName(),form.getPw())) {
+    public String userDelete(@Validated DeleteUserForm form,BindingResult bindingResult ,Authentication authentication) {
+        if (bindingResult.hasErrors() || !authentication.getName().equals(form.getName())) {
             return showUserDeleteForm(form);
         }
-        userService.delete(form.getName(), form.getPw());
+        userService.delete(form.getName());
         return "redirect:/login";
     }
-
-    //ユーザー変更
-
-    private boolean verification(Authentication authentication, String name,String pw) {
-        if(authentication.getName().equals(name) || userService.search(name,pw)) {
-            return false;
-        }
-        return true;
-    }
 }
-

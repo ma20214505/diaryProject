@@ -45,7 +45,7 @@ public class DiaryController {
         return "/diary/showDiary";
     }
 
-    //タイトルに基づいて内容を表示
+    //日記詳細表示
     @GetMapping("/showDiary/{id}")
     public String showDiaryDetail(@PathVariable("id") int id,Model model,@ModelAttribute DiaryForm form){
         model.addAttribute("diary",diaryService.showDetail(id));

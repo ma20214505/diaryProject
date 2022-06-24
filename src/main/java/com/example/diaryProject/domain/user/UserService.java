@@ -19,9 +19,8 @@ public class UserService {
     }
 
     //ユーザー削除
-    public void delete(String name, String pw) {
-        var encodPassword = passwordEncoder.encode(pw);
-        userRepository.delete(name,encodPassword);
+    public void delete(String name) {
+        userRepository.delete(name);
 
         //TODO 削除未完成
     }
