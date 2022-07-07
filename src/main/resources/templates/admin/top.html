@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{fragments/layout :: layout(~{::title}, ~{::body})}">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>管理者用のトップページだどん</h1>
+<h2>管理者一覧</h2>
+<h2>管理者管理</h2>
+<h2>ユーザー一覧(削除可能)</h2>
+<form action="#" th:action="@{/logout}" method="post">
+    <div class="mt-3">
+        <button type="submit" class="btn btn-outline-secondary">ログアウト</button>
+    </div>
+</form>
+</body>
+</html>
