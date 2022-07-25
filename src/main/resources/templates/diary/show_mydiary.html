@@ -11,26 +11,19 @@
     <tr>
         <th>タイトル</th>
         <th>投稿日</th>
-        <th>非表示</th>
     </tr>
     <tr th:each="diary : ${diaryList}">
         <td>
-            <a th:href="@{/diary/showDiary/{diaryId}(diaryId=${diary.id})}" th:text="${diary.title}">(title)</a>
+            <a th:href="@{/diary/show_mydiary/{diaryId}(diaryId=${diary.id})}" th:text="${diary.title}">(title)</a>
         </td>
 
-        
         <td>
             <a th:text="${diary.day}">(day)</a>
         </td>
 
-        <form action="#" th:action="@{/diary/hide}" method="post">
-            <td>
-                <input type="checkbox" th:value="${diary.id}">
-            </td>
-        </form>
 
     </tr>
 </table>
-<a href="/login" th:href="@{/}" class="btn btn-outline-secondary">戻る</a>
+<a href="../top.html" th:href="@{/}" class="btn btn-outline-secondary">戻る</a>
 </body>
 </html>

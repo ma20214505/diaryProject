@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{fragments/layout :: layout(~{::title}, ~{::body})}">
+<head>
+    <title>ユーザー一覧</title>
+</head>
+<body>
+<h2>ユーザー一覧</h2>
+<table class="table">
+    <tr>
+        <th>ユーザー名</th>
+        <th>登録日</th>
+    </tr>
+
+    <tr th:each="user : ${userList}">
+        <td th:text="${user.name}"></td>
+
+        <td th:text="${user.registratio_time}"></td>
+    </tr>
+
+</table>
+
+<a href="/admin" th:href="@{/admin}" class="btn btn-outline-secondary">戻る</a>
+
+</body>
+</html>

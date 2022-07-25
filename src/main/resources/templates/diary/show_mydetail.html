@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{fragments/layout :: layout(~{::title}, ~{::body})}">
+<head>
+    <title>日記</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="/static/js/inputField.js"></script>
+</head>
+<body>
+
+<form action="#" th:action="@{/diary/update_diary}" method="post" th:object="${diaryForm}">
+    <input type="hidden" name="id" th:value="${diary.getId()}">
+
+    <div class="center">
+        <label for="title" class="form-label">タイトル</label>
+        <h2><input class="title" type="text" id="title" name="title" th:value="${diary.title}" /></h2>
+    </div>
+
+    <div class="center">
+        <label for="textarea" class="form-label">内容</label>
+        <p><textarea rows="20" class="textArea" id="textarea" name="detail" th:text="${diary.detail}"></textarea></p>
+    </div>
+
+    <div class="center">
+        <button type="submit" class="btn btn-outline-primary">編集</button>
+        <a href="./show_mydiary.html" th:href="@{/diary/show_mydiary}" class="btn btn-outline-secondary">戻る</a>
+    </div>
+</form>
+
+</body>
+</html>

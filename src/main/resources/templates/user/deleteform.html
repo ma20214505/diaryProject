@@ -7,7 +7,7 @@
 </head>
 <body>
 <h1 class="mt-3">ユーザー削除</h1>
-<form action="#" th:action="@{/user/userDelete}" method="post" th:object="${deleteUserForm}">
+<form action="#" th:action="@{/user/userdelete}" method="post" th:object="${deleteUserForm}">
     <p style="color: red;" th:each="error : ${#fields.globalErrors()}" th:text="${error}"></p>
     <div class="mt-3">
         <label for="usernameInput" class="form-label">ユーザー名</label>

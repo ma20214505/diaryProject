@@ -6,16 +6,25 @@
     <link rel="stylesheet" href="button.css">
 </head>
 <body>
+
 <h1 class="mt-3">トップページ</h1>
+
 <div class="mt-3">
-    <a href="/showDiary" th:href="@{/diary/showDiary}" class="btn btn-outline-success">日記一覧</a>
+    <a href="./diary/show_diary.html" th:href="@{/diary/show_diary}" class="btn btn-outline-success">日記一覧</a>
 </div>
+
 <div class="mt-3">
-    <a href="/showDiary" th:href="@{/diary/createDiary}" class="btn btn-outline-warning">日記作成</a>
+    <a href="./diary/diaryform.html" th:href="@{/diary/create_diary}" class="btn btn-outline-warning">日記作成</a>
 </div>
+
 <div class="mt-3">
-    <a href="./user/Control.html" th:href="@{/user/control}" class="btn btn-outline-info">ユーザー管理</a>
+    <a href="./user/control.html" th:href="@{/user/control}" class="btn btn-outline-info">ユーザー管理</a>
 </div>
+
+<div class="mt-3">
+    <a href="./chat/show_caht.html" th:href="@{/chat}" class="btn btn-outline-primary">チャット</a>
+</div>
+
 <form action="#" th:action="@{/logout}" method="post">
     <div class="mt-3">
         <button type="submit" class="btn btn-outline-secondary">ログアウト</button>

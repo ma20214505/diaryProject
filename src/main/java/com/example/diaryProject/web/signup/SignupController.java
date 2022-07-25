@@ -18,11 +18,13 @@ public class SignupController {
 
     private final UserService userService;
 
+    //ユーザー登録画面遷移
     @GetMapping
     public String showSignupForm(@ModelAttribute UserForm form){
-        return "/signup/signupForm";
+        return "/signup/signupform";
     }
 
+    //ユーザー登録処理
     @PostMapping
     public String signup(@Validated UserForm form, BindingResult bindingResult){
         if(bindingResult.hasErrors()){

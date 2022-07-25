@@ -10,8 +10,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import java.sql.Timestamp;
-
 @Controller
 @RequestMapping("/diary")
 @RequiredArgsConstructor
@@ -21,9 +19,9 @@ public class DiaryController {
     private String name;
 
     //投稿フォームの表示
-    @GetMapping("/createDiary")
+    @GetMapping("/create_diary")
     public String showCreateDiary(@ModelAttribute DiaryForm form){
-        return "/diary/diaryForm";
+        return "/diary/diaryform";
     }
 
     //日記を投稿　失敗時：作成フォームに遷移　成功時：ユーザーごとの日記一覧に遷移
@@ -34,34 +32,55 @@ public class DiaryController {
         }
         name = authentication.getName();
         diaryService.createDiary(name,form.getTitle(),form.getDetail());
-        return "redirect:/diary/showDiary";
+        return "redirect:/diary/show_mydiary";
     }
 
-    //ユーザーごとに日記を表示する
-    @GetMapping("/showDiary")
+    //自分の日記を表示する
+    @GetMapping("/show_mydiary")
     public String showDiaryList(Model model,Authentication authentication){
         name = authentication.getName();
-        model.addAttribute("diaryList",diaryService.showDiary(name));
-        return "/diary/showDiary";
+        model.addAttribute("diaryList",diaryService.showMyDiary(name));
+        return "/diary/show_mydiary";
     }
 
-    //日記詳細表示
-    @GetMapping("/showDiary/{id}")
+    //自分の日記詳細表示
+    @GetMapping("/show_mydiary/{id}")
     public String showDiaryDetail(@PathVariable("id") int id,Model model,@ModelAttribute DiaryForm form){
         model.addAttribute("diary",diaryService.showDetail(id));
-        return "/diary/showDetail";
+        return "/diary/show_mydetail";
     }
 
     //日記の更新
-    @PostMapping("/updateDiary")
+    @PostMapping("/update_diary")
     public String updateDiary(@Validated Diary diary, BindingResult bindingResult, Model model){
         name = diary.getUserName();
         if(bindingResult.hasErrors()){
-            model.addAttribute("diaryList",diaryService.showDiary(name));
-            return "/diary/showDiary";
+            model.addAttribute("diaryList",diaryService.showMyDiary(name));
+            return "/diary/show_mydiary";
         }
         diaryService.update(diary.getId(),diary.getTitle(),diary.getDetail());
-        model.addAttribute("diaryList",diaryService.showDiary(name));
-        return "redirect:/diary/showDiary";
+        model.addAttribute("diaryList",diaryService.showMyDiary(name));
+        return "redirect:/diary/show_mydiary";
     }
+
+    //日記一覧
+    @GetMapping("/show_diary")
+    public String showDiaryList(Model model){
+        model.addAttribute("diaryList",diaryService.showDiary());
+        return "/diary/show_diary";
+    }
+
+    //日記詳細表示
+    @GetMapping("/show_diary/{id}")
+    public String showDetail(@PathVariable("id") int id,Model model){
+        model.addAttribute("diary",diaryService.showDetail(id));
+        return "/diary/show_detail";
+    }
+
+    //日記の非表示
+//    @PostMapping
+//    public String hide(Authentication authentication){
+//        name = authentication.getName();
+//        return "redirect:/diary/showDiary";
+//    }
 }

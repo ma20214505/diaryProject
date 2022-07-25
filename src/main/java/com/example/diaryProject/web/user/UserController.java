@@ -21,23 +21,23 @@ public class UserController {
     //ユーザー管理画面遷移
     @GetMapping("/control")
     public String showUserControl() {
-        return "/user/Control";
+        return "/user/control";
     }
 
     //ユーザー一覧遷移
-    @GetMapping("/showUserList")
+    @GetMapping("/show_userlist")
     public String showUserList() {
         return "/user/List";
     }
 
     //ユーザー削除フォーム遷移
-    @GetMapping("/userDelete")
+    @GetMapping("/userdelete")
     public String showUserDeleteForm(@ModelAttribute DeleteUserForm form) {
-        return "/user/DeleteForm";
+        return "/user/deleteform";
     }
 
     //ユーザー削除処理
-    @PostMapping("/userDelete")
+    @PostMapping("/userdelete")
     public String userDelete(@Validated DeleteUserForm form,BindingResult bindingResult ,Authentication authentication) {
         if (bindingResult.hasErrors() || !authentication.getName().equals(form.getName())) {
             return showUserDeleteForm(form);

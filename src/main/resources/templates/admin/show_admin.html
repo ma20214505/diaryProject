@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{fragments/layout :: layout(~{::title}, ~{::body})}">
+<head>
+    <title>管理者一覧ページ</title>
+</head>
+<body>
+<table class="table">
+    <tr>
+        <th>id</th>
+        <th>管理者名</th>
+    </tr>
+
+    <tr th:each="admin : ${adminList}">
+        <td th:text="${admin.id}"></td>
+
+        <td th:text="${admin.name}"></td>
+    </tr>
+</table>
+<a href="/admin" th:href="@{/admin}" class="btn btn-outline-secondary">戻る</a>
+</body>
+</html>
